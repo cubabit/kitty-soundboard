@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+body {
+  font-family: sans-serif;
+  font-size: 11px;
+}
+#content {
+  width: 1000px;
+}
+.gridBox {
+  float: left;
+  background-repeat: no-repeat;
+  background-position: 0 0px;
+  background-color: #222;
+  background-size: 320px 300px;
+  border: 0px solid #666;
+  width: 320px;
+  height: 100px;
+  color: white;
+  font-size: 2em;
+}
+.gridBox:hover {
+  background-position: 0 -100px;
+  background-color: #322;
+  cursor: pointer;
+}
+.gridBox.active, .gridbox.active:hover {
+  background-position: 0 -200px;
+  cursor: auto;
+}
+    </style>
+  </head>
+  <body onload="init();">
+    <div id="error">
+    </div>
+    <div id="content">
+    	<div id="1" onclick="playSound(this)" class="gridBox"></div>
+    	<div id="2" onclick="playSound(this)" class="gridBox"></div>
+    	<div id="3" onclick="playSound(this)" class="gridBox"></div>
+    </div>
+
+<script src="https://code.createjs.com/soundjs-0.6.1.min.js"></script>
+<script>
+var preload;
+var sounds = [
+  {src: "hiccup.ogg", id: 1, label: 'Hiccup'},
+  {src: "laugh.ogg", id: 2, label: 'Laugh'},
+  {src: "lolololo.ogg", id: 3, label: 'Lolololo'}
+];
+
+function init() {
+	if (!createjs.Sound.initializeDefaultPlugins()) {
+		document.getElementById("error").style.display = "block";
+		document.getElementById("content").style.display = "none";
+		return;
+	}
+
+	//examples.showDistractor("content");
+	var assetsPath = "assets/audio/";
+
+	createjs.Sound.alternateExtensions = ["mp3"];	// add other extensions to try loading if the src file extension is not supported
+	createjs.Sound.addEventListener("fileload", createjs.proxy(soundLoaded, this)); // add an event listener for when load is completed
+	createjs.Sound.registerSounds(sounds, assetsPath);
+}
+
+function soundLoaded(event) {
+	//examples.hideDistractor();
+	var div = document.getElementById(event.id);
+  div.innerHTML = sounds[event.id - 1].label;
+	//div.style.backgroundImage = "url('../_assets/art/audioButtonSheet.png')";
+}
+
+function stop() {
+	if (preload != null) {
+		preload.close();
+	}
+	createjs.Sound.stop();
+}
+
+function playSound(target) {
+	//Play the sound: play (src, interrupt, delay, offset, loop, volume, pan)
+	var instance = createjs.Sound.play(target.id);
+	if (instance == null || instance.playState == createjs.Sound.PLAY_FAILED) {
+		return;
+	}
+	target.className = "gridBox active";
+	instance.addEventListener("complete", function (instance) {
+		target.className = "gridBox";
+	});
+}
+</script>
+  </body>
+</html>
