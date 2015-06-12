@@ -20,6 +20,7 @@ body {
   height: 100px;
   color: white;
   font-size: 2em;
+  text-align: center;
 }
 .gridBox:hover {
   background-position: 0 -100px;
@@ -39,15 +40,29 @@ body {
     	<div id="1" onclick="playSound(this)" class="gridBox"></div>
     	<div id="2" onclick="playSound(this)" class="gridBox"></div>
     	<div id="3" onclick="playSound(this)" class="gridBox"></div>
+    	<div id="4" onclick="playSound(this)" class="gridBox"></div>
+    	<div id="5" onclick="playSound(this)" class="gridBox"></div>
+    	<div id="6" onclick="playSound(this)" class="gridBox"></div>
+    	<div id="7" onclick="playSound(this)" class="gridBox"></div>
+    	<div id="8" onclick="playSound(this)" class="gridBox"></div>
+    	<div id="9" onclick="playSound(this)" class="gridBox"></div>
+    	<div id="10" onclick="playSound(this)" class="gridBox"></div>
     </div>
 
 <script src="https://code.createjs.com/soundjs-0.6.1.min.js"></script>
 <script>
 var preload;
 var sounds = [
-  {src: "hiccup.ogg", id: 1, label: 'Hiccup'},
-  {src: "laugh.ogg", id: 2, label: 'Laugh'},
-  {src: "lolololo.ogg", id: 3, label: 'Lolololo'}
+  {src: "mer-mer-mer-mer.ogg", id: 1, label: 'Mer-mer-mer-mer'},
+  {src: "bleurgh.ogg", id: 2, label: 'Bleurgh'},
+  {src: "woo-ooo.ogg", id: 3, label: 'Woo-ooo'},
+  {src: "bella.ogg", id: 4, label: 'Bella'},
+  {src: "is-a-no.ogg", id: 5, label: 'Is a no'},
+  {src: "is-a-no-yeah-beau.ogg", id: 6, label: 'Is a no yeah Beau'},
+  {src: "there-she-is.ogg", id: 7, label: 'There she is'},
+  {src: "no-you-mustnt.ogg", id: 8, label: "No you mustn't"},
+  {src: "de-dor.ogg", id: 9, label: "De-dor"},
+  {src: "de-de-de-de-de-dee.ogg", id: 10, label: "De-de-de-dee"}
 ];
 
 function init() {
